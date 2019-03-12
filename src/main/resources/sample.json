@@ -1,0 +1,10 @@
+{"env": {
+  "alpha": {
+    "app-path": "/apk/deary-unreleased_v1.44.01.apk",
+    "appium-port": "4726"
+  },
+  "beta" : {
+    "app-path": "/apk/deary-unreleased_v1.44.01.apk",
+    "appium-port": "4725"
+  }
+}}

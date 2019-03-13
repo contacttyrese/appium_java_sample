@@ -58,16 +58,8 @@ dependencies {
     testImplementation 'com.google.inject:guice:4.2.2'
 }
 
-//task wrapper(type: Wrapper) {
-//   gradleVersion = '5.2' //version required
-//}
-
 test {
     useJUnitPlatform()
     systemProperties System.properties
     testLogging.showStandardStreams = true
 }
-
-//tasks.withType(type:Test) {
-//    systemProperties System.properties
-//}

@@ -59,3 +59,4 @@ gradle-app.setting
 
 # Don't include binary
 apk/*
+report/*

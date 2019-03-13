@@ -15,20 +15,22 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.logging.Logger;
 
 public class AndroidModule extends AbstractModule {
     private AndroidDriver appiumDriver;
-    private final Logger log = Logger.getLogger(AndroidModule.class.getName());
+    private final Logger log = LoggerFactory.getLogger(AndroidModule.class.getName());
+
 
     @Override
     public void configure() {
-        log.info("Wiring bindings..");
+        log.debug("Wiring bindings..");
         bind(Login.class).to(LoginPage.class);
         bind(Tour.class).to(TourPage.class);
     }
@@ -36,7 +38,7 @@ public class AndroidModule extends AbstractModule {
     @Provides
     @Singleton
     public Config provideConfiguration() {
-        log.info("Providing configuration..");
+        log.debug("Providing configuration..");
         File configFile = new File(Constants.configPath);
         Config config = ConfigFactory.systemProperties()
                 .withFallback(ConfigFactory.parseFile(configFile))
@@ -47,7 +49,7 @@ public class AndroidModule extends AbstractModule {
     @Provides
     @Singleton
     public AppiumDriver provideAppiumDriver(Config config) {
-        log.info("Providing Appium Driver..");
+        log.debug("Providing Appium Driver..");
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("platformName", "Android");
@@ -62,10 +64,11 @@ public class AndroidModule extends AbstractModule {
         caps.setCapability("newCommandTimeout", 9999);
 
         try {
-            log.config("Connecting to Appium Server..");
+            log.info("Connecting to Appium Server..");
             appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:" + config.getString("env.alpha.appium-port") + "/wd/hub"), caps);
-            log.config("Connected successfully");
+            log.info("Connected successfully");
         } catch (MalformedURLException exception) {
+            log.info("Failed to connect. Printing stack trace..");
             exception.printStackTrace();
         }
         return appiumDriver;
@@ -74,7 +77,7 @@ public class AndroidModule extends AbstractModule {
     @Provides
     @Singleton
     public FluentWait provideWebDriverWait(AppiumDriver appiumDriver) {
-        log.info("Providing Wait");
+        log.debug("Providing Wait");
         FluentWait fluentWait = new FluentWait(appiumDriver)
                 .pollingEvery(Duration.ofSeconds(3L))
                 .withTimeout(Duration.ofSeconds(10L))

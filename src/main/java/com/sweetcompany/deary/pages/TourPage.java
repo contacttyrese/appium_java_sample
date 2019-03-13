@@ -4,10 +4,14 @@ import com.google.inject.Inject;
 import com.sweetcompany.deary.contracts.Tour;
 import io.appium.java_client.*;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class TourPage implements Tour {
@@ -41,21 +45,21 @@ public class TourPage implements Tour {
     public boolean isImportVisible() {
         List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
         WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg2Id)));
-        return titles.get(3).isDisplayed() && monsterImg.isDisplayed();
+        return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public boolean isFindVisible() {
         List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
         WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg3Id)));
-        return titles.get(3).isDisplayed() && monsterImg.isDisplayed();
+        return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public boolean isSaveVisible() {
         List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
-        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg3Id)));
-        return titles.get(3).isDisplayed() && monsterImg.isDisplayed();
+        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg4Id)));
+        return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
@@ -65,7 +69,23 @@ public class TourPage implements Tour {
     }
 
     @Override
+    public void swipeRight() {
+        TouchAction action = new TouchAction(appiumDriver);
+        Point startPoint = new Point(50, 600);
+        Point endPoint = new Point(800, 600);
+        PointOption startPointOption = new PointOption()
+                .withCoordinates(startPoint);
+        PointOption endPointOption = new PointOption()
+                .withCoordinates(endPoint);
+        WaitOptions actionWaitOption = new WaitOptions()
+                .withDuration(Duration.ofSeconds(3L));
+        action.press(startPointOption).moveTo(endPointOption).release().perform();
+        action.waitAction(actionWaitOption);
+    }
+
+    @Override
     public boolean isVisible() {
-        return false;
+        WebElement container = wait.until(mobileDriver -> mobileDriver.findElementById(containerId));
+        return container.isDisplayed();
     }
 }

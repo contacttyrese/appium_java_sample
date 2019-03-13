@@ -19,9 +19,6 @@ public class LoginSteps implements En {
             assertTrue(errMsg, actual);
         });
 
-        When("^user swipes right$", () -> {
-
-        });
     }
 
 }

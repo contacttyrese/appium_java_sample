@@ -77,7 +77,7 @@ public class AndroidModule extends AbstractModule {
         log.info("Providing Wait");
         FluentWait fluentWait = new FluentWait(appiumDriver)
                 .pollingEvery(Duration.ofSeconds(3L))
-                .withTimeout(Duration.ofSeconds(30L))
+                .withTimeout(Duration.ofSeconds(10L))
                 .ignoring(NoSuchElementException.class)
                 .withMessage(Constants.waitErrorMsg);
         return fluentWait;

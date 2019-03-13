@@ -11,4 +11,6 @@ public interface Tour extends PageContract {
     boolean isSaveVisible();
 
     void selectSkip();
+
+    void swipeRight();
 }

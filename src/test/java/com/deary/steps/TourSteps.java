@@ -45,6 +45,10 @@ public class TourSteps implements En {
         When("^user selects skip$", () -> {
             tour.selectSkip();
         });
+
+        When("^user swipes right$", () -> {
+            tour.swipeRight();
+        });
     }
 
 }

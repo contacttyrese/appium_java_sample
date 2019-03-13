@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = { "com.deary.steps" },
         dryRun = false,
         monochrome = true,
-        tags = { "@initialtest" }
+        tags = { "@test","not @initialtest" }
 )
 public class CukesTest {
 

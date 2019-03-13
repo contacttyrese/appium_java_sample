@@ -64,11 +64,17 @@ public class AndroidModule extends AbstractModule {
         caps.setCapability("newCommandTimeout", 9999);
 
         try {
-            log.info("Connecting to Appium Server..");
+            if (log.isInfoEnabled()) {
+                log.info("Connecting to Appium Server...");
+            }
             appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:" + config.getString("env.alpha.appium-port") + "/wd/hub"), caps);
-            log.info("Connected successfully");
+            if (log.isInfoEnabled()) {
+                log.info("Connected successfully!!!");
+            }
         } catch (MalformedURLException exception) {
-            log.info("Failed to connect. Printing stack trace..");
+            if (log.isInfoEnabled()) {
+                log.info("Failed to connect. Printing stack trace...");
+            }
             exception.printStackTrace();
         }
         return appiumDriver;

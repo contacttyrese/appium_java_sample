@@ -1,5 +1,5 @@
-@test
-Feature: Deary app feature
+@test @android @emulator
+Feature: Pre-Login
   As a user
   I want to navigate to login page
   In order to login
@@ -24,13 +24,9 @@ Feature: Deary app feature
     When user swipes right
     Then user is on friends on landing tour
 
+    @initialtest
   Scenario: user is able to navigate to login screen
     Given user is on landing tour
     When user selects skip
-    Then user is on login screen
-
-    @initialtest
-  Scenario: user is friends visible cukes setup test
-    Given user is on friends on landing tour
-    When user selects skip
+    And user denies permission on login screen
     Then user is on login screen

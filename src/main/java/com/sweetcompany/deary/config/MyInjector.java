@@ -5,8 +5,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Stage;
 import com.sweetcompany.deary.config.modules.AndroidModule;
-import cucumber.api.guice.CucumberModules;
-import cucumber.runtime.java.guice.InjectorSource;
+import io.cucumber.guice.CucumberModules;
+import io.cucumber.guice.InjectorSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

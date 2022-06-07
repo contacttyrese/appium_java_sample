@@ -2,7 +2,7 @@ package com.deary.steps;
 
 import com.google.inject.Inject;
 import com.sweetcompany.deary.contracts.Tour;
-import cucumber.api.java8.En;
+import io.cucumber.java8.En;
 
 import static org.junit.Assert.assertTrue;
 

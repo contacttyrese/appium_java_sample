@@ -12,5 +12,6 @@ public interface Constants {
     String nexusEmulatorName = "Android Emulator";
     String nexusEmulatorId = "emulator-5554";
     String waitErrorMsg = "Time expired to locate mobile element";
-
+    // This var should be used for the value of the capability espressoBuildConfig
+    String espressoDriverFix = "{ \"additionalAppDependencies\": [ \"com.google.android.material:material:1.0.0\", \"androidx.lifecycle:lifecycle-extensions:2.1.0\" ] }"
 }

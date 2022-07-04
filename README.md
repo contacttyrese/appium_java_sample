@@ -13,5 +13,5 @@ If all is done, **try this command:**
 `./gradlew test -Dcucumber.filter.tags="@emulator"'`
 
 For any questions, you can contact me via:
-LinkedIn - https://www.linkedin.com/in/contacttyrese/
-Telegram - https://t.me/appiumautomation
+* LinkedIn - https://www.linkedin.com/in/contacttyrese/
+* Telegram - https://t.me/appiumautomation

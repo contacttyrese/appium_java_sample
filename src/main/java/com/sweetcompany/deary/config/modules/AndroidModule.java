@@ -15,8 +15,8 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -25,7 +25,7 @@ import java.time.Duration;
 
 public class AndroidModule extends AbstractModule {
     private AndroidDriver appiumDriver;
-    private final Logger log = LoggerFactory.getLogger(AndroidModule.class.getName());
+    private final Logger log = LogManager.getLogger(this.getClass().getName());
 
 
     @Override

@@ -7,11 +7,11 @@ import com.google.inject.Stage;
 import com.sweetcompany.deary.config.modules.AndroidModule;
 import io.cucumber.guice.CucumberModules;
 import io.cucumber.guice.InjectorSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MyInjector implements InjectorSource {
-    private final Logger log = LoggerFactory.getLogger(MyInjector.class.getName());
+    private final Logger log = LogManager.getLogger(MyInjector.class.getName());
 
     @Override
     public Injector getInjector() {

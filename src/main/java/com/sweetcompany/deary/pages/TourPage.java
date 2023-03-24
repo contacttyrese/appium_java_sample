@@ -16,7 +16,7 @@ import java.util.List;
 
 public class TourPage implements Tour {
     private AndroidDriver appiumDriver;
-    private FluentWait<MobileDriver> wait;
+    private FluentWait<AppiumDriver> wait;
 
     private final String titlesClassName = "android.widget.TextView";
     private final String monsterImg1Id = "ivMonster1_T_1";
@@ -30,41 +30,41 @@ public class TourPage implements Tour {
 
     @Inject
     public TourPage(AppiumDriver appiumDriver, FluentWait wait) {
-        this.appiumDriver = (AndroidDriver<MobileElement>) appiumDriver;
+        this.appiumDriver = (AndroidDriver) appiumDriver;
         this.wait = wait;
     }
 
     @Override
     public boolean isFriendsVisible() {
-        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
-        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg1Id)));
+        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(AppiumBy.className(titlesClassName)));
+        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(monsterImg1Id)));
         return titles.get(1).isDisplayed() && titles.get(2).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public boolean isImportVisible() {
-        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
-        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg2Id)));
+        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(AppiumBy.className(titlesClassName)));
+        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(monsterImg2Id)));
         return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public boolean isFindVisible() {
-        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
-        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg3Id)));
+        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(AppiumBy.className(titlesClassName)));
+        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(monsterImg3Id)));
         return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public boolean isSaveVisible() {
-        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(By.className(titlesClassName)));
-        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(monsterImg4Id)));
+        List<WebElement> titles = wait.until(mobileDriver -> mobileDriver.findElements(AppiumBy.className(titlesClassName)));
+        WebElement monsterImg = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(monsterImg4Id)));
         return titles.get(0).isDisplayed() && monsterImg.isDisplayed();
     }
 
     @Override
     public void selectSkip() {
-        WebElement skipButton = wait.until(mobileDriver -> mobileDriver.findElement(MobileBy.id(skipButtonId)));
+        WebElement skipButton = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(skipButtonId)));
         skipButton.click();
     }
 
@@ -85,7 +85,7 @@ public class TourPage implements Tour {
 
     @Override
     public boolean isVisible() {
-        WebElement container = wait.until(mobileDriver -> mobileDriver.findElementById(containerId));
+        WebElement container = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(containerId)));
         return container.isDisplayed();
     }
 }

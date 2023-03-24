@@ -2,11 +2,9 @@ package com.sweetcompany.deary.pages;
 
 import com.google.inject.Inject;
 import com.sweetcompany.deary.contracts.Login;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -15,7 +13,7 @@ import java.util.List;
 
 public class LoginPage implements Login {
     private AndroidDriver appiumDriver;
-    private FluentWait<MobileDriver> wait;
+    private FluentWait<AndroidDriver> wait;
 
     private final String titleId = "register_app_name";
     private final String imgId = "register_app_image";
@@ -29,47 +27,47 @@ public class LoginPage implements Login {
 
     @Inject
     public LoginPage(AppiumDriver appiumDriver, FluentWait wait) {
-        this.appiumDriver = (AndroidDriver<MobileElement>) appiumDriver;
+        this.appiumDriver = (AndroidDriver) appiumDriver;
         this.wait = wait;
     }
 
     @Override
     public void selectSignIn() {
-        WebElement signInButton = wait.until(mobileDriver -> mobileDriver.findElementByClassName(signInButtonClassName));
+        WebElement signInButton = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.className(signInButtonClassName)));
         signInButton.click();
     }
 
     @Override
     public void denyPermissionForFiles() {
-        WebElement denyButton = wait.until(mobileDriver -> mobileDriver.findElement(By.id(denyButtonId)));
+        WebElement denyButton = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(denyButtonId)));
         denyButton.click();
     }
 
     @Override
     public void allowPermissionForFiles() {
-        WebElement allowButton = wait.until(mobileDriver -> mobileDriver.findElement(By.id(allowButtonId)));
+        WebElement allowButton = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(allowButtonId)));
         allowButton.click();
     }
 
     @Override
     public boolean isGoogleSignInVisible() {
-        wait.until(mobileDriver -> ExpectedConditions.invisibilityOf(mobileDriver.findElement(By.className(signInButtonClassName))));
-        wait.until(mobileDriver -> mobileDriver.findElement(By.className(googleSignInTitleClassName)));
-        List<WebElement> views = wait.until(mobileDriver -> mobileDriver.findElements(By.className(googleSignInTitleClassName)));
+        wait.until(mobileDriver -> ExpectedConditions.invisibilityOf(mobileDriver.findElement(AppiumBy.className(signInButtonClassName))));
+        wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.className(googleSignInTitleClassName)));
+        List<WebElement> views = wait.until(mobileDriver -> mobileDriver.findElements(AppiumBy.className(googleSignInTitleClassName)));
         return views.get(0).isDisplayed();
     }
 
     @Override
     public boolean isGoogleSelectVisible() {
-        wait.until(mobileDriver -> ExpectedConditions.invisibilityOf(mobileDriver.findElement(By.className(signInButtonClassName))));
-        WebElement gmail = wait.until(mobileDriver -> mobileDriver.findElementById(googleExistingEmailId));
+        wait.until(mobileDriver -> ExpectedConditions.invisibilityOf(mobileDriver.findElement(AppiumBy.className(signInButtonClassName))));
+        WebElement gmail = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(googleExistingEmailId)));
         return gmail.isDisplayed();
     }
 
     @Override
     public boolean isVisible() {
-        wait.until(mobileDriver -> mobileDriver.findElement(By.id(imgId)));
-        WebElement title = wait.until(mobileDriver -> mobileDriver.findElement(By.id(titleId)));
+        wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(imgId)));
+        WebElement title = wait.until(mobileDriver -> mobileDriver.findElement(AppiumBy.id(titleId)));
         return title.isDisplayed();
     }
 }

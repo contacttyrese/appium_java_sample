@@ -22,11 +22,26 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AndroidModule extends AbstractModule {
     private AndroidDriver appiumDriver;
     private final Logger log = LogManager.getLogger(this.getClass().getName());
 
+    private Map<String, Object> getAppiumOptions(Config config) {
+        Map<String, Object> options = new HashMap<>();
+        options.put("automationName", "UiAutomator2");
+        options.put("app", config.getString("user.dir") + config.getString("env.alpha.app-path"));
+        options.put("appPackage", "com.sweetcompany.deary");
+        options.put("appWaitActivity", "com.sweetcompany.deary.tutorial.InitTutorialActivity");
+        options.put("noReset", false);
+        options.put("fullReset", false);
+        options.put("deviceName", Constants.nexusEmulatorName);
+        options.put("udid", Constants.nexusEmulatorId);
+        options.put("newCommandTimeout", 9999);
+        return options;
+    }
 
     @Override
     public void configure() {
@@ -53,21 +68,13 @@ public class AndroidModule extends AbstractModule {
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("platformName", "Android");
-        caps.setCapability("automationName", "UiAutomator2");
-        caps.setCapability("app", config.getString("user.dir") + config.getString("env.alpha.app-path"));
-        caps.setCapability("appPackage", "com.sweetcompany.deary");
-        caps.setCapability("appWaitActivity", "com.sweetcompany.deary.tutorial.InitTutorialActivity");
-        caps.setCapability("noReset", false);
-        caps.setCapability("fullReset", false);
-        caps.setCapability("deviceName", Constants.nexusEmulatorName);
-        caps.setCapability("udid", Constants.nexusEmulatorId);
-        caps.setCapability("newCommandTimeout", 9999);
+        caps.setCapability("appium:options", getAppiumOptions(config));
 
         try {
             if (log.isInfoEnabled()) {
                 log.info("Connecting to Appium Server...");
             }
-            appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:" + config.getString("env.alpha.appium-port") + "/wd/hub"), caps);
+            appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:" + config.getString("env.alpha.appium-port")), caps);
             if (log.isInfoEnabled()) {
                 log.info("Connected successfully!!!");
             }

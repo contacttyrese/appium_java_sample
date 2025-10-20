@@ -7,6 +7,7 @@ To run this project from cli:
 * You must have an Android Emulator/Device setup
 * You must have Appium server setup
 * You must have the configurations setup
+* Successfully runs with the Node v24 and UiAutomator2 driver
 
 If all is done, **try this command:**
 

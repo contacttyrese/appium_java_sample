@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'test_deary_exercise'
+rootProject.name = 'appium_java_sample'

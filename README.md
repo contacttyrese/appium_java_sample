@@ -1,5 +1,16 @@
 # Mobile Test Automation Framework
-**This example Appium framework has been setup as a hobby. Deary App is the case study for this framework.**
+**This example Appium project has been created for anyone who needs a sample Java project to use.**
+
+The Appium client uses:
+* Java 8
+* Gradle
+* Google Guice for Dependency Injection
+* Deary App is the sample android apk for this framework (this app no longer receives updates) (Search on Google Deary Apk
+* Junit4 Runner
+
+The Appium server uses:
+* Node v24
+* UiAutomator2 driver
 
 If you would like the binary please visit here: https://dearyapp.com/
 

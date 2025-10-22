@@ -17,8 +17,8 @@ idea {
 }
 
 jar {
-    baseName = 'deary_exercise'
-	version = '0.0.2'
+    archivesBaseName = 'deary_exercise'
+    archiveVersion = '0.0.2'
 }
 
 sourceCompatibility = 1.8

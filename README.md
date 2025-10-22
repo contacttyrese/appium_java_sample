@@ -12,8 +12,6 @@ The Appium server uses:
 * Node v24
 * UiAutomator2 driver
 
-If you would like the binary please visit here: https://dearyapp.com/
-
 To run this project from cli:
 * You must have an Android Emulator/Device setup
 * You must have Appium server setup

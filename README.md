@@ -9,6 +9,7 @@ The Appium client uses:
 * Junit4 Runner
 
 The Appium server uses:
+* Appium 3
 * Node v24
 * UiAutomator2 driver
 
